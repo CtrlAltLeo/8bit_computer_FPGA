@@ -23,34 +23,7 @@ module programCounter (
 
 	 
     //Design
-	//Counter to Slow Clock
     
-    /*always @ ( posedge clk or posedge reset )
-    begin
-        if ( reset )
-		  begin
-            clk_cnt <= 16'd0;
-				sub_clk <= 1'b0;
-		  end
-        else if ( clk_cnt === 16'hFFFF )
-		  begin
-            clk_cnt <= 16'd0;
-				sub_clk <= 1'b1;
-		  end
-        else
-		  begin
-            clk_cnt <= clk_cnt + 1;
-				sub_clk <= 1'b0;
-		  end
-    end*/
-	 
-	 //Slow clock
-	 
-	 /*always @ ( posedge clk or posedge reset )
-	 begin
-		if ( reset )
-			my_clk*/
-
 	 
     //SR Flop
     always @ ( posedge clk or posedge reset )
