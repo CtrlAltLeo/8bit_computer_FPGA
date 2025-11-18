@@ -14,7 +14,7 @@ module programCounter (
     output [3:0] count;
     
     reg [15:0]  my_clk;
-	 reg			 sub_clk;
+	reg			sub_clk;
     reg         cnt_en;
     reg [3:0]   count;
     reg         stop_d1;
