@@ -1,14 +1,14 @@
 //Counter module (74LS161A)
 module program_counter (
     clk,
-    //reset,
+    reset,
     //start,
     //stop,
     count
     );
     
     input        clk;
-    //input        reset;
+    input        reset;
     //input        start;
     //input        stop;
     output [3:0] count;
@@ -37,9 +37,11 @@ module program_counter (
 	 
 	 //counter without reset
 	 
-	 always @ ( posedge clk )
+	 always @ ( posedge clk or posedge reset )
 	 begin
-	     if ( count == 4'd15 )
+		 if ( reset )
+			 count <= 4'b0;
+	     else if ( count == 4'd15 )
 		      count <= 4'b0;
 		  else
 		      count <= count + 1;
