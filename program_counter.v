@@ -1,24 +1,23 @@
 //Counter module (74LS161A)
-module programCounter (
+module program_counter (
     clk,
-    reset,
-    start,
-    stop,
+    //reset,
+    //start,
+    //stop,
     count
     );
     
     input        clk;
-    input        reset;
-    input        start;
-    input        stop;
+    //input        reset;
+    //input        start;
+    //input        stop;
     output [3:0] count;
     
-    reg [15:0]  my_clk;
-	reg			sub_clk;
-    reg         cnt_en;
+
+    //reg         cnt_en;
     reg [3:0]   count;
-    reg         stop_d1;
-    reg         stop_d2;
+    //reg         stop_d1;
+    //reg         stop_d2;
 	 
 
 	 
@@ -26,7 +25,7 @@ module programCounter (
     
 	 
     //SR Flop
-    always @ ( posedge clk or posedge reset )
+    /*always @ ( posedge clk or posedge reset )
     begin
         if ( reset )
             cnt_en <= 1'b0;
@@ -34,18 +33,29 @@ module programCounter (
             cnt_en <= 1'b1;
         else if ( stop )
             cnt_en <=1'b0;
-    end
+    end*/
+	 
+	 //counter without reset
+	 
+	 always @ ( posedge clk )
+	 begin
+	     if ( count == 4'd15 )
+		      count <= 4'b0;
+		  else
+		      count <= count + 1;
+	 end
 
     //Counter
-    always @ ( posedge clk or posedge reset )
+	 /*
+    always @ ( posedge clk )//or posedge reset )
     begin
         if ( reset )
             count <= 4'b0;
-        else if ( cnt_en && count === 4'd7 && sub_clk)
+        else if ( cnt_en && count == 4'd7)
             count <= 4'b0;
-        else if ( cnt_en && sub_clk)
+        else if ( cnt_en )
             count <= count + 1;
-    end
+    end*/
 	 
         
     //Delay
