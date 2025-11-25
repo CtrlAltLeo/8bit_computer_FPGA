@@ -4,7 +4,10 @@ module eightbit_computer(
 	clk, // Clock signal external
   reg1_data_in,
   reg1_data_out,
-  reg1_clr
+  reg1_clr,
+  reg2_data_in,
+  reg2_data_out,
+  reg2_clr
 );
 
 inout wire [7:0] bus;
@@ -12,6 +15,9 @@ input clk;
 input reg1_data_in;
 input reg1_data_out;
 input reg1_clr;
+input reg2_data_in;
+input reg2_data_out;
+input reg2_clr;
 
 register reg1(
   .bus (bus),
@@ -20,6 +26,15 @@ register reg1(
   .data_out (reg1_data_out),
   .clr (reg1_clr)
 );
+
+register reg2(
+  .bus (bus),
+  .clk (clk),
+  .data_in (reg2_data_in),
+  .data_out (reg2_data_out),
+  .clr (reg2_clr)
+);
+	
 
 /*
 always @(posedge clk)
