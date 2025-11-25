@@ -7,69 +7,85 @@
 :vpi_module "/usr/local/lib/ivl/vhdl_textio.vpi";
 :vpi_module "/usr/local/lib/ivl/v2005_math.vpi";
 :vpi_module "/usr/local/lib/ivl/va_math.vpi";
-S_0x556e2116c770 .scope module, "tb_computer" "tb_computer" 2 1;
+S_0x559f41863a40 .scope module, "tb_computer" "tb_computer" 2 1;
  .timescale 0 0;
-v0x556e21180210_0 .net "bus", 7 0, L_0x556e21180750;  1 drivers
-v0x556e21180320_0 .var "clk", 0 0;
-v0x556e21180430_0 .var "reg1_clr", 0 0;
-v0x556e21180520_0 .var "reg1_in", 0 0;
-v0x556e21180610_0 .var "reg1_out", 0 0;
-S_0x556e2116c900 .scope module, "computer" "eightbit_computer" 2 11, 3 2 0, S_0x556e2116c770;
+o0x7fec93aaf348 .functor BUFZ 8, C4<zzzzzzzz>; HiZ drive
+; Elide local net with no drivers, v0x559f41878860_0 name=_ivl_0
+RS_0x7fec93aaf048 .resolv tri, L_0x559f41878fe0, L_0x559f418790c0;
+v0x559f41878940_0 .net8 "bus", 7 0, RS_0x7fec93aaf048;  2 drivers
+v0x559f41878a50_0 .var "bus_data", 7 0;
+v0x559f41878b10_0 .var "bus_enable", 0 0;
+v0x559f41878bd0_0 .var "clk", 0 0;
+v0x559f41878d10_0 .var "reg1_clr", 0 0;
+v0x559f41878e00_0 .var "reg1_in", 0 0;
+v0x559f41878ef0_0 .var "reg1_out", 0 0;
+L_0x559f418790c0 .functor MUXZ 8, o0x7fec93aaf348, v0x559f41878a50_0, v0x559f41878b10_0, C4<>;
+S_0x559f41863bd0 .scope module, "computer" "eightbit_computer" 2 14, 3 2 0, S_0x559f41863a40;
  .timescale 0 0;
     .port_info 0 /INOUT 8 "bus";
     .port_info 1 /INPUT 1 "clk";
     .port_info 2 /INPUT 1 "reg1_data_in";
     .port_info 3 /INPUT 1 "reg1_data_out";
     .port_info 4 /INPUT 1 "reg1_clr";
-v0x556e2117fda0_0 .net "bus", 7 0, L_0x556e21180750;  alias, 1 drivers
-v0x556e2117fe80_0 .net "clk", 0 0, v0x556e21180320_0;  1 drivers
-v0x556e2117ff20_0 .net "reg1_clr", 0 0, v0x556e21180430_0;  1 drivers
-v0x556e21180020_0 .net "reg1_data_in", 0 0, v0x556e21180520_0;  1 drivers
-v0x556e211800f0_0 .net "reg1_data_out", 0 0, v0x556e21180610_0;  1 drivers
-S_0x556e21130cf0 .scope module, "reg1" "register" 3 16, 4 2 0, S_0x556e2116c900;
+v0x559f41878420_0 .net8 "bus", 7 0, RS_0x7fec93aaf048;  alias, 2 drivers
+v0x559f41878500_0 .net "clk", 0 0, v0x559f41878bd0_0;  1 drivers
+v0x559f418785a0_0 .net "reg1_clr", 0 0, v0x559f41878d10_0;  1 drivers
+v0x559f41878670_0 .net "reg1_data_in", 0 0, v0x559f41878e00_0;  1 drivers
+v0x559f41878740_0 .net "reg1_data_out", 0 0, v0x559f41878ef0_0;  1 drivers
+S_0x559f41826cf0 .scope module, "reg1" "register" 3 16, 4 2 0, S_0x559f41863bd0;
  .timescale 0 0;
     .port_info 0 /INOUT 8 "bus";
     .port_info 1 /INPUT 1 "clk";
     .port_info 2 /INPUT 1 "data_in";
     .port_info 3 /INPUT 1 "data_out";
     .port_info 4 /INPUT 1 "clr";
-o0x7fa1d5ed1018 .functor BUFZ 8, C4<zzzzzzzz>; HiZ drive
-; Elide local net with no drivers, v0x556e21157a50_0 name=_ivl_0
-v0x556e2117f810_0 .net "bus", 7 0, L_0x556e21180750;  alias, 1 drivers
-v0x556e2117f8f0_0 .net "clk", 0 0, v0x556e21180320_0;  alias, 1 drivers
-v0x556e2117f990_0 .net "clr", 0 0, v0x556e21180430_0;  alias, 1 drivers
-v0x556e2117fa50_0 .var "data", 7 0;
-v0x556e2117fb80_0 .net "data_in", 0 0, v0x556e21180520_0;  alias, 1 drivers
-v0x556e2117fc40_0 .net "data_out", 0 0, v0x556e21180610_0;  alias, 1 drivers
-E_0x556e2116bfa0 .event posedge, v0x556e2117f990_0, v0x556e2117f8f0_0;
-L_0x556e21180750 .functor MUXZ 8, o0x7fa1d5ed1018, v0x556e2117fa50_0, v0x556e21180610_0, C4<>;
-    .scope S_0x556e21130cf0;
+o0x7fec93aaf018 .functor BUFZ 8, C4<zzzzzzzz>; HiZ drive
+; Elide local net with no drivers, v0x559f4184eef0_0 name=_ivl_0
+v0x559f41828270_0 .net8 "bus", 7 0, RS_0x7fec93aaf048;  alias, 2 drivers
+v0x559f41877f70_0 .net "clk", 0 0, v0x559f41878bd0_0;  alias, 1 drivers
+v0x559f41878010_0 .net "clr", 0 0, v0x559f41878d10_0;  alias, 1 drivers
+v0x559f418780d0_0 .var "data", 7 0;
+v0x559f41878200_0 .net "data_in", 0 0, v0x559f41878e00_0;  alias, 1 drivers
+v0x559f418782c0_0 .net "data_out", 0 0, v0x559f41878ef0_0;  alias, 1 drivers
+E_0x559f41862e50 .event posedge, v0x559f41878010_0, v0x559f41877f70_0;
+L_0x559f41878fe0 .functor MUXZ 8, o0x7fec93aaf018, v0x559f418780d0_0, v0x559f41878ef0_0, C4<>;
+    .scope S_0x559f41826cf0;
 T_0 ;
-    %wait E_0x556e2116bfa0;
-    %load/vec4 v0x556e2117fb80_0;
+    %wait E_0x559f41862e50;
+    %load/vec4 v0x559f41878200_0;
     %flag_set/vec4 8;
     %jmp/0xz  T_0.0, 8;
-    %load/vec4 v0x556e2117f810_0;
-    %assign/vec4 v0x556e2117fa50_0, 0;
+    %load/vec4 v0x559f41828270_0;
+    %assign/vec4 v0x559f418780d0_0, 0;
 T_0.0 ;
-    %load/vec4 v0x556e2117f990_0;
+    %load/vec4 v0x559f41878010_0;
     %flag_set/vec4 8;
     %jmp/0xz  T_0.2, 8;
     %pushi/vec4 0, 0, 8;
-    %assign/vec4 v0x556e2117fa50_0, 0;
+    %assign/vec4 v0x559f418780d0_0, 0;
 T_0.2 ;
     %jmp T_0;
     .thread T_0;
-    .scope S_0x556e2116c770;
+    .scope S_0x559f41863a40;
 T_1 ;
     %pushi/vec4 0, 0, 1;
-    %store/vec4 v0x556e21180320_0, 0, 1;
+    %store/vec4 v0x559f41878bd0_0, 0, 1;
     %pushi/vec4 1, 0, 1;
-    %store/vec4 v0x556e21180610_0, 0, 1;
+    %store/vec4 v0x559f41878b10_0, 0, 1;
+    %pushi/vec4 0, 0, 8;
+    %store/vec4 v0x559f41878a50_0, 0, 8;
+    %delay 10, 0;
+    %pushi/vec4 170, 0, 8;
+    %store/vec4 v0x559f41878a50_0, 0, 8;
+    %delay 5, 0;
     %pushi/vec4 1, 0, 1;
-    %store/vec4 v0x556e21180320_0, 0, 1;
-    %vpi_call 2 34 "$monitor", "time=%3d, clock=%b", $time, v0x556e21180320_0 {0 0 0};
-    %vpi_call 2 36 "$finish" {0 0 0};
+    %store/vec4 v0x559f41878b10_0, 0, 1;
+    %delay 20, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x559f41878bd0_0, 0, 1;
+    %vpi_call 2 46 "$monitor", "time=%3d, bus=%b, clock=%b", $time, v0x559f41878a50_0, v0x559f41878bd0_0 {0 0 0};
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x559f41878b10_0, 0, 1;
     %end;
     .thread T_1;
 # The file index is used to find the file name in the following table.
