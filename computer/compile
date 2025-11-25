@@ -1,0 +1,4 @@
+#!/bin/bash
+
+iverilog -o test tb_computer.v eightbit_computer.v register.v
+vvp test

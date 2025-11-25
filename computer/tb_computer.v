@@ -30,22 +30,31 @@ assign bus = bus_enable ? bus_data : 8'bz;
 
 initial begin
   clk = 1'b0;
-
   bus_enable = 1'b1;
-  bus_data = 8'h00;
+  bus_data = 8'hCD;
+  reg1_out = 1'b0;
+  #1 
+  $display("Time: %d,  Bus: %h, reg out: %b", $time,  bus, reg1_out);
 
-  #10
+  reg1_in = 1'b1;
 
-  bus_data = 8'hAA;
-  
-  #5 bus_enable = 1'b1;
 
-  #20
+  #1 clk = 1'b1;
+  #1 clk = 1'b0;
 
-  clk = 1'b1;
-  $monitor("time=%3d, bus=%b, clock=%b", $time, bus_data, clk);
+  reg1_in = 1'b0;
+  #1 bus_enable = 1'b0;
+
+  reg1_out = 1'b1;
+
+
+  $display("Time: %d,  Bus: %h, reg out: %b", $time,  bus, reg1_out);
 
   bus_enable = 1'b0;
+  reg1_out = 1'b0;
+  #1
+
+  $display("Time: %d,  Bus: %h, reg out: %b", $time,  bus, reg1_out);
 end
 
 
