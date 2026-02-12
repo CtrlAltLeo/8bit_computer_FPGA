@@ -3,12 +3,16 @@ module output_register(
     input fast_clk,
 
     output reg [6:0] digit,
-    output reg [1:0] display,
+    //output reg [1:0] display,
     
     input clear,
-    input data_in,
     input [7:0] bus
     );
+    
+    reg [7:0] data_in;
+    
+    //initialize space for the conversion
+    reg [19:0] conversion;
     
     always @(posedge clk) begin
         if (data_in) begin
@@ -16,33 +20,29 @@ module output_register(
         end
     end
     
-    always @(posedge fast_clk) begin
+    always @(*) begin
+        conversion[7:0] = data_in;
+        while (conversion[7:0] > 7'd0) begin
+            conversion = conversion << 1;
+            if (conversion[11:8] => 4'd5) begin
+                conversion[11:8] = conversion[11:8] + 3;
+            end
+            if (conversion[15:12] => 4'd5) begin
+                conversion[15:12] = conversion[15:12] + 3;
+            end
+            if (conversion[19:16] => 4'd5) begin
+                conversion[19:16] = conversion[19:16] + 3;
+            end
+        end
+    end
+    
+    /*always @(posedge fast_clk) begin
         display <= display + 1; //cycle through four displays
         
         case (display == 2'b00)
 
 
     end
+    */
 
 endmodule
-/*
-    always @(*) begin
-        case (state)
-            s0: begin
-                ns_light = 2'b10; //green
-                ew_light = 2'b00; //red
-            end
-            s1: begin
-                ns_light = 2'b01; //yellow
-                ew_light = 2'b00; //red
-            end
-            s2: begin
-                ns_light = 2'b00; //red
-                ew_light = 2'b10; //green
-            end
-            s3: begin
-                ns_light = 2'b00; //red
-                ew_light = 2'b01; //yellow
-            end
-        endcase
-        */
