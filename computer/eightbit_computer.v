@@ -24,6 +24,8 @@ wire Counter_Out;
 wire Counter_In;
 wire Counter_Clear;
 
+wire Reset;
+
 // Program Counter
 
 // Instruction Register + Control Logic
