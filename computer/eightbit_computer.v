@@ -29,19 +29,4 @@ wire Write_Counter;
 // A, B and ALU				
 
 // Output Register			
-
-/*
-always @(posedge clk)
-begin
-	reg_1_do <= reg_1_di;
-end	
-
-assign bus = reg_1_do;
-
-
-//assign led1 = 1'b0;
-assign led1 = ~clk;
-assign led2 = ~reg_1_di;
-assign led3 = ~reg_1_do;
-*/
 endmodule
