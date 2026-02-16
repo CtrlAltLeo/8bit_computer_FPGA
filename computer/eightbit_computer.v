@@ -20,7 +20,9 @@ wire Write_ALU;
 wire Sub;
 wire Load_O;
 wire Enable_Counter;
-wire Write_Counter;	
+wire Counter_Out;
+wire Counter_In;
+wire Counter_Clear;
 
 // Program Counter
 
