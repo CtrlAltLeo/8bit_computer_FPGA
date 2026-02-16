@@ -17,10 +17,10 @@ reg [7:0] data;
 
 always @(posedge clk or posedge clr)
 begin
-	if (data_in)
+  	if (clr)
+    	data <= 8'h00;
+	else if (data_in)
 		data <= bus;
-  if (clr)
-    data <= 8'h00;
 end
 
 assign bus = data_out ? data : 8'bz;
