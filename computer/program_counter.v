@@ -1,74 +1,30 @@
-//Counter module (74LS161A)
-module program_counter (
-    clk,
-    reset,
-    //start,
-    //stop,
-    count
-    );
-    
-    input        clk;
-    input        reset;
-    //input        start;
-    //input        stop;
-    output [3:0] count;
-    
+module program_counter(clock, bus, enable, c_out, c_in, clear, reset, led);
 
-    //reg         cnt_en;
-    reg [3:0]   count;
-    //reg         stop_d1;
-    //reg         stop_d2;
-	 
+inout [7:0] bus;
 
-	 
-    //Design
-    
-	 
-    //SR Flop
-    /*always @ ( posedge clk or posedge reset )
-    begin
-        if ( reset )
-            cnt_en <= 1'b0;
-        else if ( start )
-            cnt_en <= 1'b1;
-        else if ( stop )
-            cnt_en <=1'b0;
-    end*/
-	 
-	 //counter without reset
-	 
-	 always @ ( posedge clk or posedge reset )
-	 begin
-		 if ( reset )
-			 count <= 4'b0;
-	     else if ( count == 4'd15 )
-		      count <= 4'b0;
-		  else
-		      count <= count + 1;
-	 end
+input clock;
+input enable;
+input c_out;
+input c_in;
+input clear;
+input reset;
 
-    //Counter
-	 /*
-    always @ ( posedge clk )//or posedge reset )
-    begin
-        if ( reset )
-            count <= 4'b0;
-        else if ( cnt_en && count == 4'd7)
-            count <= 4'b0;
-        else if ( cnt_en )
-            count <= count + 1;
-    end*/
-	 
-        
-    //Delay
-    /*always @ ( posedge clk or posedge reset )
-    begin
-        if ( reset )
-        begin
-            stop_d1 <= 1'b0;
-            stop_d2 <= stop_d1;
-        end
-    end*/
+output reg [3:0] led;
+
+reg [3:0] counter;
+
+always @(posedge clock or posedge clear or posedge reset) 
+begin
+	if (reset || clear)
+		counter <= 4'h0;
+	else if (c_in)
+		counter <= bus[3:0];
+	else if (enable)
+		counter <= counter + 1;
+		
+	led <= counter;
+end
+
+assign bus = c_out ? {4'b0000, counter} : 8'bz;
+
 endmodule
-
-//Bus transceiver (74LS245)

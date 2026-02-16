@@ -1,24 +1,33 @@
-// Top level module with bus and submodules
-module eightbit_computer(
-	bus, // 8 bit wide bus
-	clk, // Clock signal external
-  reg1_data_in,
-  reg1_data_out,
-  reg1_clr
-);
+// "Frame" of the computer were parts are mounted
+module computer(input clock,
+					inout wire [7:0] bus,
+					output MI, // MAR In
+					output RI, //RAM In
+					output RO, //RAM out
+					output HLT, // Halt Clock
+					output CLR, // Clear MAR
+					output [6:0] SS_Out, // 7 segment display out
+					output [3:0] SS_Sel, // 7 segment display selector
+					output NEG, // Add minus sign to display
+					output [3:0] led
+					);
+					
+wire Load_Instruction;
+wire Load_A;
+wire Write_A;
+wire Load_B;
+wire Write_ALU;
+wire Sub;
+wire Load_O;
+wire Enable_Counter;
+wire Write_Counter;	
 
-inout wire [7:0] bus;
-input clk;
-input reg1_data_in;
-input reg1_data_out;
-input reg1_clr;
+// Program Counter
 
-register reg1(
-  .bus (bus),
-  .clk (clk),
-  .data_in (reg1_data_in),
-  .data_out (reg1_data_out),
-  .clr (reg1_clr)
-);
+// Instruction Register + Control Logic
+
+// A, B and ALU				
+
+// Output Register			
 
 endmodule
