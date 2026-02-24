@@ -3,7 +3,7 @@ module output_register(
     input fast_clk,
 
     output reg [6:0] display,
-    output reg [2:0] display_en,
+    output reg [3:0] display_en,
     
     input clear,
     input [7:0] bus,
