@@ -12,6 +12,16 @@ module A_B_ALU(
     reg [7:0] reg_a;
     reg [7:0] reg_b;
     
-    always @(posedge clk) begin
-        
+    //assign bus = write_a ? reg_a : 8'bz;
+    
+    initial begin
+        reg_a = 8'b01101001;
     end
+
+    always @(posedge clk) begin
+        reg_a <= ~reg_a;
+    end
+    
+    assign bus = reg_a;
+
+endmodule
