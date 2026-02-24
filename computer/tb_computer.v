@@ -13,7 +13,6 @@ reg bus_enable;
 wire [6:0] digit_test;
 reg output_r;
 
-/*
 eightbit_computer computer(
   .bus (bus),
   .clk (clk),
@@ -21,15 +20,14 @@ eightbit_computer computer(
   .reg1_data_out (reg1_out),
   .reg1_clr (reg1_clr)
 );
-*/
 
-output_register output_test(
+/*output_register output_test(
   .clk (clk),
   .display (digit_test),
   .clear (reset),
   .bus (bus),
   .input_en (output_r)
-);
+);*/
 
 initial begin
   clk = 1'b0;
