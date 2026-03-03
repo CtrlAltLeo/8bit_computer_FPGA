@@ -1,4 +1,4 @@
 #!/bin/bash
 
-iverilog -o test.out tb_computer.v eightbit_computer.v register.v
+iverilog -o test.out tb_computer.v output_register.v
 vvp test.out
