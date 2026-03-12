@@ -22,14 +22,38 @@ module control_logic(
     reg [7:0] instruction;
 
     //control counter
-    reg [3:0] count;
+    reg [5:0] count;
     reg count_clear = 1'b0;
 
     always @(negedge clock) begin
-        if (count_clear)
-            count <= 4'b0;
+        if (count_clear || count == 6'b100000)
+            count <= 6'b1;
         else
-            count <= count + 1;
+            count << 1;
     end
+    
+    always @(*) begin
+        case (count)
+            6'b1: begin
+                CO = 1'b1;
+                MI = 1'b1;
+            end
+            
+            6'b10: begin
+                RO = 1'b1;
+                II = 1'b1;
+                CE = 1'b1;
+            end
+            
+            default: begin
+                CO = 1'b0;
+                MI = 1'b0;
+                RO = 1'b0;
+                II = 1'b0;
+                CE = 1'b0;
+            end
+        endcase
+    end
+
     
 endmodule
