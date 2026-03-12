@@ -6,9 +6,13 @@ module instruction_register(
     input read,
     input write,
     input clear,
-    output reg [7:0] instruction;
+    output reg [7:0] instruction
     );
     
+	initial begin
+		instruction = 8'b00010000;
+	end
+
     always @(posedge clock) begin
         if (reset || clear)
             instruction <= 8'h00;

@@ -13,7 +13,7 @@ reg bus_enable;
 wire [6:0] digit_test;
 reg output_r;
 
-eightbit_computer computer(
+computer eightcomp(
   .bus (bus),
   .clk (clk),
   .reg1_data_in (reg1_in),

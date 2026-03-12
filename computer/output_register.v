@@ -71,7 +71,7 @@ module output_register(
                 7: display = 7'b1110000;
                 8: display = 7'b1111111;
                 9: display = 7'b1111011;
-                default: display = 7'b11111111;
+                default: display = 7'b1111111;
             endcase
         end else if (!display_en[1]) begin
             case (digit1)
@@ -85,7 +85,7 @@ module output_register(
                 7: display = 7'b1110000;
                 8: display = 7'b1111111;
                 9: display = 7'b1111011;
-                default: display = 7'b11111111;
+                default: display = 7'b1111111;
             endcase
         end else if (!display_en[2]) begin
             case (digit2)
@@ -99,10 +99,10 @@ module output_register(
                 7: display = 7'b1110000;
                 8: display = 7'b1111111;
                 9: display = 7'b1111011;
-                default: display = 7'b11111111;
+                default: display = 7'b1111111;
             endcase
         end else begin
-            display = 7'b11111111;
+            display = 7'b1111111;
         end
     end
     

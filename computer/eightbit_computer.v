@@ -14,7 +14,10 @@ module computer(input clock,
 				output wire [3:0] led
 				);
 					
-wire Load_Instruction;
+//these are deprecated through use of control word wire
+/*
+wire Instruction_In;
+wire Instruction_Out;
 wire Load_A;
 wire Write_A;
 wire Load_B;
@@ -24,11 +27,25 @@ wire Load_O;
 wire Enable_Counter;
 wire Counter_Out;
 wire Counter_In;
-wire Counter_Clear;
-wire Output_Clear;
-wire Output_In;
+*/
+wire Counter_Clear; //not sure where this goes in control word
+wire Output_Clear; //also currently still in use
+/*
+wire Output_In;*/
 
 wire Reset;
+
+wire [15:0] control_word;
+//HLT MI RI RO | IO II CO CI | CE AO AI ALO | SUB BI DI unused
+//15  14 13 12   11 10  9  8    7  6  5   4     3  2  1  0
+
+assign MI = control_word[14];
+assign RI = control_word[13];
+assign RO = control_word[12];
+assign HLT = control_word[15];
+//assign CLR =
+//^^^not sure what this one maps to tbh
+
 
 // Temp Drivers
 assign Enable_Counter = 1;
@@ -37,25 +54,46 @@ assign Enable_Counter = 1;
 program_counter pc(
 	.clock(clock), 
 	.bus(bus), 
-	.enable(Enable_Counter), 
-	.c_out(Write_Counter), 
-	.c_in(Counter_In), 
+	.enable(control_word[7]),
+	.c_out(control_word[9]), 
+	.c_in(control_word[8]), 
 	.clear(Counter_Clear), 
 	.reset(Reset), 
 	.led(led)
 );
 
-// Instruction Register + Control Logic
+// Wire for connection between instruction register and control logic
+wire [7:0] inst_reg_to_ctrl;
+
+// Instruction Register
+instruction_register ir(
+	.clock(clock),
+	.bus(bus),
+	.reset(Reset),
+	.read(control_word[10]),
+	.write(control_word[11]),
+	.clear(Reset), //clear mapped to reset for now, not sure if we need both
+	.instruction(inst_reg_to_ctrl)
+	);
+
+//Control logic
+control_logic ctrl(
+	.clock(clock),
+	.reset(Reset),
+	.ctrl_wd(control_word),
+	.instruction(inst_reg_to_ctrl)
+	);
+
 
 // A, B and ALU				
 
 // Output Register
-output_register or(
+output_register out(
 	.clk(clock),
 	.fast_clk(fast_clock),
 	.clear(Output_Clear),
 	.bus(bus),
-	.input_en(Output_In),
+	.input_en(control_word[1]),
 	.display(SS_Out),
 	.display_en(SS_Sel)
 );

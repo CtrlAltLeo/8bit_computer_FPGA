@@ -82,7 +82,7 @@ module control_logic(
             7'b0011001: ctrl_wd = 16'h1480;
             7'b1000010: ctrl_wd = 16'h0002;
             
-            default: ctrl_wd = 16'hFFFF;
+            default: ctrl_wd = 16'h0000;
         endcase
     end
 

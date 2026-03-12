@@ -11,7 +11,7 @@ input reset;
 
 output wire [3:0] led;
 
-reg [3:0] counter;
+reg [3:0] counter = 4'b0;
 
 always @(posedge clock or posedge clear or posedge reset) 
 begin
