@@ -86,6 +86,10 @@ control_logic ctrl(
 
 
 // A, B and ALU
+// register b_disable to make sure we don't try to write from the b reg
+
+reg b_disable = 1'b0;
+
 a_b_alu ab_alu(
   .clock(clock),
   .bus(bus),
@@ -95,11 +99,11 @@ a_b_alu ab_alu(
   .a_reset(Reset), //mapping both to Reset for now
   .b_in(control_word[2]),
   //this is not used in original eight bit control scheme, currently not enabled
-  //.b_out(),
+  .b_out(b_disable),
   .b_clear(Reset), //both to reset for now
   .b_reset(Reset), //both to reset for now
   .alu_out(control_word[4]),
-  .subract(control_word[3])
+  .subtract(control_word[3])
 );
 
 // Output Register

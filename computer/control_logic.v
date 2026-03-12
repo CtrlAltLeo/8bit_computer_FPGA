@@ -14,8 +14,8 @@ module control_logic(
     reg [2:0] count = 3'b0;
     reg count_clear = 1'b0;
 
-    always @(negedge clock) begin
-        if (count_clear || count == 3'd4)
+    always @(negedge clock or posedge reset) begin
+        if (count_clear || count == 3'd4 || reset)
             count <= 3'b0;
         else
             count <= count + 1;
@@ -65,25 +65,25 @@ module control_logic(
             7'b0100100: ctrl_wd = 16'h0038;
 
             //ADDI
-            7'b0011000: ctrl_wd = 16'h4200;
-            7'b0011001: ctrl_wd = 16'h1480;
+            7'b0101000: ctrl_wd = 16'h4200;
+            7'b0101001: ctrl_wd = 16'h1480;
             7'b0101010: ctrl_wd = 16'h0804;
             7'b0101011: ctrl_wd = 16'h0030;
             
             //JUMPI
-            7'b0011000: ctrl_wd = 16'h4200;
-            7'b0011001: ctrl_wd = 16'h1480;
+            7'b0110000: ctrl_wd = 16'h4200;
+            7'b0110001: ctrl_wd = 16'h1480;
             7'b0110010: ctrl_wd = 16'h0900;
             
             //STO
-            7'b0011000: ctrl_wd = 16'h4200;
-            7'b0011001: ctrl_wd = 16'h1480;
+            7'b0111000: ctrl_wd = 16'h4200;
+            7'b0111001: ctrl_wd = 16'h1480;
             7'b0111010: ctrl_wd = 16'h4800;
             7'b0111011: ctrl_wd = 16'h2040;
             
             //CLR
-            7'b0011000: ctrl_wd = 16'h4200;
-            7'b0011001: ctrl_wd = 16'h1480;
+            7'b1000000: ctrl_wd = 16'h4200;
+            7'b1000001: ctrl_wd = 16'h1480;
             7'b1000010: ctrl_wd = 16'h0002;
             
             default: ctrl_wd = 16'h0000;
