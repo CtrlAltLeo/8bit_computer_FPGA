@@ -30,6 +30,10 @@ module control_logic(
     
     always @(*) begin
         case (address)
+			//case to fetch after reset
+			7'b0000000: ctrl_wd = 16'h4200;
+			7'b0000001: ctrl_wd = 16'h1480;
+
             //LDA
             7'b0001000: ctrl_wd = 16'h4200;
             7'b0001001: ctrl_wd = 16'h1480;
