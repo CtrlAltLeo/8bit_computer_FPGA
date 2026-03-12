@@ -66,7 +66,21 @@ module control_logic(
             7'b0101010: ctrl_wd = 16'h0804;
             7'b0101011: ctrl_wd = 16'h0030;
             
+            //JUMPI
+            7'b0011000: ctrl_wd = 16'h4200;
+            7'b0011001: ctrl_wd = 16'h1480;
+            7'b0110010: ctrl_wd = 16'h0900;
             
+            //STO
+            7'b0011000: ctrl_wd = 16'h4200;
+            7'b0011001: ctrl_wd = 16'h1480;
+            7'b0111010: ctrl_wd = 16'h4800;
+            7'b0111011: ctrl_wd = 16'h2040;
+            
+            //CLR
+            7'b0011000: ctrl_wd = 16'h4200;
+            7'b0011001: ctrl_wd = 16'h1480;
+            7'b1000010: ctrl_wd = 16'h0002;
             
             default: ctrl_wd = 16'hFFFF;
         endcase
