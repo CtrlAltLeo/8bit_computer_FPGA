@@ -10,13 +10,15 @@ reg clear = 1'b0;
 reg [7:0] bus_data;
 reg bus_enable;
 
+wire [15:0] control;
+
+reg [7:0] instruction;
+
 control_logic ctrl(
 	.clock (clk),
 	.reset (reset),
-	.bus (bus),
-	.read (read),
-	.write (write),
-	.clear (clear)
+	.ctrl_wd (control),
+	.instruction (instruction)
 	);
 
 initial begin
@@ -24,26 +26,12 @@ initial begin
   forever #1 clk = ~clk;
 end
 
-assign bus = bus_enable ? bus_data : 8'bz;
 
 initial begin
-  	$monitor("Time: %h, Bus: %b", $time, bus);
-  	bus_data = 8'd128;
-  	bus_enable = 1'b1;
-  	read = 1'b1;
+	#1 instruction = 8'b00011111;
+  	$monitor("Time: %h; ctrlwd: %h", $time, control);
 
-  	#2
-	bus_data = 8'd255;
-  	bus_enable = 1'b1;
-	read = 1'b0;
-
-	#4
-	bus_enable = 1'b0;
-	write = 1'b1;
-
-	#6
-	write = 1'b0;
-
+	#10 instruction = 8'b00101111;
   
 end 
 

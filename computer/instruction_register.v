@@ -6,10 +6,9 @@ module instruction_register(
     input read,
     input write,
     input clear,
+    output reg [7:0] instruction;
     );
     
-    reg [7:0] instruction;
-
     always @(posedge clock) begin
         if (reset || clear)
             instruction <= 8'h00;
