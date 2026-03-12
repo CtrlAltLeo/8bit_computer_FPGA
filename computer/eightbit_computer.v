@@ -85,7 +85,21 @@ control_logic ctrl(
 	);
 
 
-// A, B and ALU				
+// A, B and ALU
+a_b_alu ab_alu(
+  .clock(clock),
+  .bus(bus),
+  .a_in(),
+  .a_out(),
+  .a_clear(),
+  .a_reset(),
+  .b_in(),
+  .b_out(),
+  .b_clear(),
+  .b_reset(),
+  .alu_out(),
+  .subract()
+);
 
 // Output Register
 output_register out(
